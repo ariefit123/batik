@@ -79,21 +79,34 @@
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+            @section('content')
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-12 mb-3">
+                        <img src="{{ url('images/logo.png') }}" width="300" class="rounded mx-auto d-block" alt="">
+                    </div>
+                    @foreach($barangs as $barang)
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="{{ url ('uploads') }}/{{$barang->gambar}}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{$barang->nama_barang}}</h5>
+                                <p class="card-text">
+                                    <strong>Harga : </strong> Rp. {{number_format($barang->harga)}} <br>
+                                    <strong>Stok : </strong> Rp. {{$barang->stok}} <br>
+                                    <hr>
+                                    <strong>Keterangan : </strong> <br>
+                                    {{$barang->keterangan}}
+                                </p>
+                                <a href="produk/{{$barang->id}}" class="btn btn-primary ">Order</a>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
             </div>
+            @endsection
+
         </div>
     </body>
 </html>
